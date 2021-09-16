@@ -1,66 +1,62 @@
-
 document.querySelector('.wrapper__body').style.setProperty("--custom-icon", 'url(../images/wallpaper/1w.png)');
 
-function updateClock(){
+function updateClock() {
 
-	const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-	  "Jul", "Aug", "Sep", "Now", "Oct", "Now"
-	];
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Now", "Oct", "Now"
+    ];
 
-	const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-	let today = new Date();
+    const today = new Date();
 
-	let day = today.getDate();
-	let month = monthNames[today.getMonth()];
-	let dayName = dayNames[today.getDay()];
-	let time = `${(today.getHours() < 10 ? '0' : '') + today.getHours()}:${(today.getMinutes() < 10 ? '0' : '') + today.getMinutes()}`;
+    const day = today.getDate();
+    const month = monthNames[today.getMonth()];
+    const dayName = dayNames[today.getDay()];
+    const time = `${(today.getHours() < 10 ? '0' : '') + today.getHours()}:${(today.getMinutes() < 10 ? '0' : '') + today.getMinutes()}`;
 
-	document.getElementById('day-0').innerHTML = day;
-	document.getElementById('month-0').innerHTML = month;
-	document.getElementById('date-0').innerHTML = dayName;
-	document.getElementById('hour-0').innerHTML = time;
+    document.getElementById('day-0').innerHTML = day;
+    document.getElementById('month-0').innerHTML = month;
+    document.getElementById('date-0').innerHTML = dayName;
+    document.getElementById('hour-0').innerHTML = time;
 
-	setTimeout(updateClock, 1000);
+    setTimeout(updateClock, 1000);
 }
 
 
 document.getElementById('setting-app-0').addEventListener('click', function() {
-	document.getElementById('setting-window-0').classList.toggle('body-wrapper__setting-window--close');
+    document.getElementById('setting-window-0').classList.toggle('body-wrapper__setting-window--close');
 });
 
 
-function pickTheWallpaper(elemId){
+function pickTheWallpaper(elemId) {
 
-	let element = document.getElementById(elemId);
-	document.querySelector('.wrapper__body').style.setProperty("--custom-icon", `url(${element.src})`);
+    const element = document.getElementById(elemId);
+    document.querySelector('.wrapper__body').style.setProperty("--custom-icon", `url(${element.src})`);
 
-	element.classList.add('block-img-content-setting-window-body-wrapper__item--selected');
+    element.classList.add('block-img-content-setting-window-body-wrapper__item--selected');
 
-	checkSelectedItem(elemId);
+    checkSelectedItem(elemId);
 
 }
 
-function setCustomAttribute(){
-	const wallpaperItem = document.querySelectorAll('.block-img-content-setting-window-body-wrapper__item img');
+function setCustomAttribute() {
+    const wallpaperItem = document.querySelectorAll('.block-img-content-setting-window-body-wrapper__item img');
 
-	for (let i = 0; i < wallpaperItem.length; i++) {
-		wallpaperItem[i].setAttribute('id', 'wallpaper-' + i);
-		wallpaperItem[i].setAttribute('onclick', `pickTheWallpaper('${wallpaperItem[i].getAttribute('id')}')`);
-	}
+    Array.from(wallpaperItem).forEach((item, index) => {
+        item.setAttribute('id', 'wallpaper-' + index);
+        item.setAttribute('onclick', `pickTheWallpaper('${item.getAttribute('id')}')`);
+    })
 }
 
 
-function checkSelectedItem(elemId){
-	const wallpaperItem = document.querySelectorAll('.block-img-content-setting-window-body-wrapper__item img');
-	for (let i = 0; i < wallpaperItem.length; i++) {
+function checkSelectedItem(elemId) {
+    const wallpaperItem = document.querySelectorAll('.block-img-content-setting-window-body-wrapper__item img');
 
-		if (wallpaperItem[i].getAttribute('id') != elemId) {
-			wallpaperItem[i].classList.remove('block-img-content-setting-window-body-wrapper__item--selected');
-		}
-	}
+    Array.from(wallpaperItem).forEach(item => {
+        if (item.getAttribute('id') != elemId) item.classList.remove('block-img-content-setting-window-body-wrapper__item--selected');
+    })
 }
 
 setCustomAttribute();
 updateClock();
-
