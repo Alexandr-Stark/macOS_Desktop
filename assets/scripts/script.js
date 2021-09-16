@@ -1,6 +1,6 @@
 function updateClock() {
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-        "Jul", "Aug", "Sep", "Oct" "Now", "Dec"
+        "Jul", "Aug", "Sep", "Oct", "Now", "Dec"
     ];
 
     const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
