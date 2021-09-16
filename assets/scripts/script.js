@@ -1,9 +1,6 @@
-document.querySelector('.wrapper__body').style.setProperty("--custom-icon", 'url(../images/wallpaper/1w.png)');
-
 function updateClock() {
-
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-        "Jul", "Aug", "Sep", "Now", "Oct", "Now"
+        "Jul", "Aug", "Sep", "Oct" "Now", "Dec"
     ];
 
     const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -23,14 +20,7 @@ function updateClock() {
     setTimeout(updateClock, 1000);
 }
 
-
-document.getElementById('setting-app-0').addEventListener('click', function() {
-    document.getElementById('setting-window-0').classList.toggle('body-wrapper__setting-window--close');
-});
-
-
 function pickTheWallpaper(elemId) {
-
     const element = document.getElementById(elemId);
     document.querySelector('.wrapper__body').style.setProperty("--custom-icon", `url(${element.src})`);
 
@@ -41,9 +31,9 @@ function pickTheWallpaper(elemId) {
 }
 
 function setCustomAttribute() {
-    const wallpaperItem = document.querySelectorAll('.block-img-content-setting-window-body-wrapper__item img');
+    const wallpaperItems = document.querySelectorAll('.block-img-content-setting-window-body-wrapper__item img');
 
-    Array.from(wallpaperItem).forEach((item, index) => {
+    Array.from(wallpaperItems).forEach((item, index) => {
         item.setAttribute('id', 'wallpaper-' + index);
         item.setAttribute('onclick', `pickTheWallpaper('${item.getAttribute('id')}')`);
     })
@@ -51,12 +41,18 @@ function setCustomAttribute() {
 
 
 function checkSelectedItem(elemId) {
-    const wallpaperItem = document.querySelectorAll('.block-img-content-setting-window-body-wrapper__item img');
+    const wallpaperItems = document.querySelectorAll('.block-img-content-setting-window-body-wrapper__item img');
 
-    Array.from(wallpaperItem).forEach(item => {
-        if (item.getAttribute('id') != elemId) item.classList.remove('block-img-content-setting-window-body-wrapper__item--selected');
+    Array.from(wallpaperItems).forEach(item => {
+        if (item.getAttribute('id') !== elemId) item.classList.remove('block-img-content-setting-window-body-wrapper__item--selected');
     })
 }
+
+
+document.querySelector('.wrapper__body').style.setProperty("--custom-icon", 'url(../images/wallpaper/1w.png)');
+document.getElementById('setting-app-0').addEventListener('click', function() {
+    document.getElementById('setting-window-0').classList.toggle('body-wrapper__setting-window--close');
+});
 
 setCustomAttribute();
 updateClock();
