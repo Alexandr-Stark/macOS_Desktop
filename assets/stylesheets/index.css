@@ -277,6 +277,10 @@ body {
     margin-top: 30px;
 }
 
+.setting-window-body-wrapper__content--close {
+    display: none;
+}
+
 .content-setting-window-body-wrapper__img {
     display: flex;
     flex-direction: column;

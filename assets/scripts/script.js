@@ -48,11 +48,23 @@ function checkSelectedItem(elemId) {
     })
 }
 
+function stabilazeOpeningWindow() {
+    document.querySelector('.setting-window-body-wrapper__content').classList.toggle('setting-window-body-wrapper__content--close');
+}
 
-document.querySelector('.wrapper__body').style.setProperty("--custom-icon", 'url(../images/wallpaper/1w.png)');
+
+document.querySelector('.wrapper__body').style.setProperty("--custom-icon", 'url(https://source.unsplash.com/89PFnHKg8HE/7952x5304)');
+
 document.getElementById('setting-app-0').addEventListener('click', function() {
     document.getElementById('setting-window-0').classList.toggle('body-wrapper__setting-window--close');
+
+    if (document.querySelector('.setting-window-body-wrapper__content').classList.contains('setting-window-body-wrapper__content--close')) {
+        setTimeout(stabilazeOpeningWindow, 200);
+    } else {
+        document.querySelector('.setting-window-body-wrapper__content').classList.add('setting-window-body-wrapper__content--close');
+    }
 });
+
 
 setCustomAttribute();
 updateClock();
