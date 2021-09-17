@@ -325,6 +325,14 @@ body {
 .block-img-content-setting-window-body-wrapper__item img {
     width: 100%;
     height: auto;
+    opacity: 1;
+    border-radius: 5px;
+    transition: .2s ease-in-out;
+}
+
+.block-img-content-setting-window-body-wrapper__item img:hover {
+    opacity: 0.7;
+    transition: .2s ease-in-out;
 }
 
 ::-webkit-scrollbar {
